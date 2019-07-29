@@ -1,0 +1,30 @@
+- platform: mqtt
+  name: "SONOFF_SUN_uptime"
+  unit_of_measurement: ""
+  state_topic: "status/SONOFF_SUN/Uptime"
+- platform: mqtt
+  name: "SONOFF_SUN_RSSI"
+  unit_of_measurement: "dB"
+  state_topic: "status/SONOFF_SUN/RSSI"
+- platform: mqtt
+  name: "SONOFF_SUN_BSSId"
+  unit_of_measurement: ""
+  state_topic: "status/SONOFF_SUN/BSSId"
+
+- platform: mqtt
+  name: "SONOFF_SUN_Info1"
+  unit_of_measurement: ""
+  state_topic: "tele/SONOFF_SUN/INFO1"
+- platform: mqtt
+  name: "SONOFF_SUN_Info2"
+  unit_of_measurement: ""
+  state_topic: "tele/SONOFF_SUN/INFO2"
+- platform: mqtt
+  name: "SONOFF_SUN_Info3"
+  unit_of_measurement: ""
+  state_topic: "tele/SONOFF_SUN/INFO3"
+
+- platform: mqtt
+  name: "SONOFF_SUN_result"
+  unit_of_measurement: ""
+  state_topic: "stat/SONOFF_SUN/RESULT"

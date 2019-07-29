@@ -1,0 +1,38 @@
+#=======================================================
+#	Rule 470 is engaged when button DOWN/STOP is pressed
+#	Normally this will cause the shade to go down, but
+#	if pressed one more time before delay time has been
+#	reached it will disengage the motor and stop the curtain
+#=======================================================
+- id: '470'
+  alias: SuncurtainUp
+  trigger:
+    platform: state
+    entity_id: switch.sonoff_sun1
+    from: 'off'
+    to: 'on'
+  action:
+    - delay: 00:00:15
+    - service: switch.turn_off
+      entity_id: switch.sonoff_sun1      # Stop motor after 15 seconds
+
+#=======================================================
+#	Rule 471 is engaged when button UP is pressed
+#	Normally this will cause the shade to go up, but
+#	if button DOWN/STOP is pressed before delay time has been
+#	reached it will disengage the motor and stop the curtain
+#=======================================================
+- id: '471'
+  alias: SuncurtainDown
+  trigger:
+    platform: state
+    entity_id: switch.sonoff_sun2
+    from: 'off'
+    to: 'on'
+  action:
+    - service: switch.turn_on        # Start motor
+      entity_id: switch.sonoff_sun1
+    - delay: 00:00:15
+    - service: switch.turn_off
+      entity_id: switch.sonoff_sun1	# Stop motor after 15 seconds
+      entity_id: switch.sonoff_sun2	# Reset direction relay

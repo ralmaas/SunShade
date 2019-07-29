@@ -1,0 +1,102 @@
+﻿[
+  {
+    "id": "67dcffd.fc131",
+    "type": "mqtt in",
+    "z": "993355f9.be9a88",
+    "name": "",
+    "topic": "tele/SONOFF_SUN/STATE",
+    "qos": "2",
+    "datatype": "auto",
+    "broker": "8ce05428.509e68",
+    "x": 154.5,
+    "y": 53,
+    "wires": [
+      [
+        "8e19c946.21cc48"
+      ]
+    ]
+  },
+  {
+    "id": "8e19c946.21cc48",
+    "type": "function",
+    "z": "993355f9.be9a88",
+    "name": "Split json",
+    "func": "var value = JSON.parse(msg.payload);\nvar uptime = value.Uptime;\nvar rssi = value.Wifi.RSSI;\nvar bssid = value.Wifi.BSSId;\nvar msg1 = {\"topic\": \"uptime\", \"payload\": uptime};\nvar msg2 = {\"topic\": \"rssi\", \"payload\": rssi};\nvar msg3 = {\"topic\": \"bssid\", \"payload\": bssid};\nreturn [msg1, msg2, msg3];",
+    "outputs": 3,
+    "noerr": 0,
+    "x": 267.5,
+    "y": 139,
+    "wires": [
+      [
+        "19249741.7415e9"
+      ],
+      [
+        "dc3ddae4.17ec78"
+      ],
+      [
+        "463b2a5e.855a14"
+      ]
+    ]
+  },
+  {
+    "id": "19249741.7415e9",
+    "type": "mqtt out",
+    "z": "993355f9.be9a88",
+    "name": "status/SONOFF_SUN/Uptime",
+    "topic": "status/SONOFF_SUN/Uptime",
+    "qos": "",
+    "retain": "",
+    "broker": "8ce05428.509e68",
+    "x": 501.5,
+    "y": 97,
+    "wires": []
+  },
+  {
+    "id": "dc3ddae4.17ec78",
+    "type": "mqtt out",
+    "z": "993355f9.be9a88",
+    "name": "status/SONOFF_SUN/RSSI",
+    "topic": "status/SONOFF_SUN/RSSI",
+    "qos": "",
+    "retain": "",
+    "broker": "8ce05428.509e68",
+    "x": 512.5,
+    "y": 165,
+    "wires": []
+  },
+  {
+    "id": "463b2a5e.855a14",
+    "type": "mqtt out",
+    "z": "993355f9.be9a88",
+    "name": "status/SONOFF_SUN/BSSId",
+    "topic": "status/SONOFF_SUN/BSSId",
+    "qos": "",
+    "retain": "",
+    "broker": "8ce05428.509e68",
+    "x": 490.5,
+    "y": 234,
+    "wires": []
+  },
+  {
+    "id": "8ce05428.509e68",
+    "type": "mqtt-broker",
+    "z": "",
+    "name": "Broker",
+    "broker": "IP-address of MQTT-broker",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": true,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  }
+]
